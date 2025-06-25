@@ -37,3 +37,4 @@ o.list = true
 o.inccommand = 'split'
 o.scrolloff = 8
 o.hlsearch = true
+o.completeopt = "menu", "menuone", "noselect"

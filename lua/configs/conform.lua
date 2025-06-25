@@ -26,6 +26,7 @@ local options = {
         html = { "prettier" },
          python = { "isort", "black" },
          javascript = { { "prettierd", "prettier" } },
+         haskell = { { "prettierd", "prettier" } },
       --  add more languages to it
       },
     },
