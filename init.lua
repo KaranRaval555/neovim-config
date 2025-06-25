@@ -43,3 +43,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end,
 })
+
+if vim.g.vscode then
+    require "mappings"
+end
