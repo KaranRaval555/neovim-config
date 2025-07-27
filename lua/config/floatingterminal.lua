@@ -46,10 +46,10 @@ local toggle_terminal = function()
   else
     vim.api.nvim_win_hide(state.floating.win)
   end
+  vim.cmd("normal i")
 end
 
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal)
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 return M

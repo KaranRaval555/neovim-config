@@ -34,11 +34,11 @@ map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 --
 -- -- Tabs
--- map("n", "<Tab>", ":tabn<CR>", opts) -- open new tab
--- map("n", "<S-Tab>", ":tabp<CR>", opts) -- close current tab
--- map("n", "<leader>x", ":tabclose<CR>", opts) --  go to next tab
--- map("n", "<leader>b", ":tabnew<CR>", opts) --  go to previous tab
---
+map("n", "<Tab>", ":tabn<CR>", opts) -- open new tab
+map("n", "<S-Tab>", ":tabp<CR>", opts) -- close current tab
+map("n", "<leader>x", ":tabclose<CR>", opts) --  go to next tab
+map("n", "<leader>b", ":tabnew<CR>", opts) --  go to previous tab
+
 -- Toggle line wrapping
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
 
