@@ -61,5 +61,6 @@ map("n", "<leader>st", function()
   vim.cmd.wincmd("J")
   vim.api.nvim_win_set_height(0, 7)
 end)
+
 vim.keymap.set("n", "<leader>to", ":TSCOpen<CR>")
 vim.keymap.set("n", "<leader>tc", ":TSCClose<CR>")
