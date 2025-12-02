@@ -112,7 +112,7 @@ return {
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config({
       severity_sort = true,
-      float = { border = "rounded", source = "if_many" },
+      float = { border = "rounded", source = "if_many", wrap = true },
       underline = { severity = vim.diagnostic.severity.ERROR },
       signs = vim.g.have_nerd_font and {
         text = {
@@ -178,6 +178,11 @@ return {
       automatic_installation = false,
       handlers = {
         function(server_name)
+          -- prevent duplicate TypeScript LSPs
+          if server_name == "tsserver" then
+            return
+          end
+
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
           require("lspconfig")[server_name].setup(server)
