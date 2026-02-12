@@ -1,7 +1,8 @@
 local o = vim.o
 vim.g.have_nerd_font = true
-o.shiftwidth = 4
+o.shiftwidth = 2
 o.background = "dark"
+o.winborder = "rounded"
 o.matchtime = 2
 o.autoindent = true
 o.wrap = true
@@ -28,6 +29,7 @@ o.expandtab = true
 o.tabstop = 4
 o.softtabstop = 4
 o.undofile = true
+o.incsearch = true
 o.termguicolors = true
 o.ignorecase = true
 o.smartcase = true
@@ -37,17 +39,17 @@ o.timeoutlen = 300
 o.title = true
 o.splitright = true
 o.splitbelow = true
-o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+o.list = false
 o.inccommand = "split"
 o.cursorline = true
 o.ttyfast = true
 o.smoothscroll = true
 o.hlsearch = true
-o.completeopt = "menu", "menuone", "noselect"
+o.completeopt = "menu,menuone,noselect,popup,fuzzy"
 o.cursorlineopt = "both"
 o.scrolloff = 10
 o.confirm = true
+o.linebreak = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",

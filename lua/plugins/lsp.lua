@@ -15,10 +15,7 @@ return {
     { "mason-org/mason.nvim", opts = {} },
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-
     { "j-hui/fidget.nvim", opts = {} },
-
-    "saghen/blink.cmp",
   },
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -112,7 +109,7 @@ return {
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config({
       severity_sort = true,
-      float = { border = "rounded", source = "if_many" },
+      float = { border = "rounded", source = "if_many", wrap = true },
       underline = { severity = vim.diagnostic.severity.ERROR },
       signs = vim.g.have_nerd_font and {
         text = {
@@ -149,7 +146,17 @@ return {
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
-      ts_ls = {},
+
+      ts_ls = {
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+      },
+      emmet_ls = {
+        filetypes = { "html", "typescriptreact", "javascriptreact", "css" },
+      },
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
@@ -177,6 +184,7 @@ return {
       ensure_installed = {},
       automatic_installation = false,
       handlers = {
+        ["jdtls"] = function() end,
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})

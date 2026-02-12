@@ -7,14 +7,13 @@ return {
     "rcarriga/nvim-dap-ui",
 
     -- Required dependency for nvim-dap-ui
-    "nvim-neotest/nvim-nio",
+    --   "nvim-neotest/nvim-nio",
 
     -- Installs the debug adapters for you
     "mason-org/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
 
     -- Add your own debuggers here
-    "leoluz/nvim-dap-go",
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -129,12 +128,5 @@ return {
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
     -- Install golang specific config
-    require("dap-go").setup({
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has("win32") == 0,
-      },
-    })
   end,
 }

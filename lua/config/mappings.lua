@@ -2,14 +2,17 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 map("i", "jk", "<ESC>")
+map("n", "<leader>o", ":update<CR> :source<CR>", { desc = "Save and source current file" })
+map("n", "<leader>w", ":update<CR> :write<CR>", { desc = "Save current file" })
+map("n", "<leader>x", ":quit<CR> :write<CR>", { desc = "Quit current file" })
 map("n", "<leader>yy", 'gg"+yG')
 map("n", "<leader>dd", 'gg"+dG')
+map("n", "<leader>vv", "ggVG")
+map("n", "<leader>rr", 'ggVG"+p')
 map("n", "<M-j>", "<cmd>cnext<CR>")
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
-
 map("n", "<M-k>", "<cmd>cprev<CR>")
 map("n", "ss", ":split<Return>")
 map("n", "sv", ":vsplit<Return>")
@@ -23,6 +26,7 @@ end, { desc = "Make current file executable" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostics in floating window" })
 map("n", "<Down>", ":resize -2<CR>", opts)
 map("n", "<Up>", ":resize +2<CR>", opts)
 map("n", "<Left>", ":vertical resize -2<CR>", opts)
@@ -34,10 +38,10 @@ map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 --
 -- -- Tabs
-map("n", "<Tab>", ":tabn<CR>", opts) -- open new tab
-map("n", "<S-Tab>", ":tabp<CR>", opts) -- close current tab
-map("n", "<leader>x", ":tabclose<CR>", opts) --  go to next tab
-map("n", "<leader>b", ":tabnew<CR>", opts) --  go to previous tab
+-- map("n", "<Tab>", ":tabn<CR>", opts) -- open new tab
+-- map("n", "<S-Tab>", ":tabp<CR>", opts) -- close current tab
+-- map("n", "<leader>x", ":tabclose<CR>", opts) --  go to next tab
+-- map("n", "<leader>b", ":tabnew<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
