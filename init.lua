@@ -3,7 +3,6 @@ vim.g.maplocalleader = "\\"
 
 require("config.options")
 require("config.mappings")
-require("config.floatingterminal")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -26,3 +25,5 @@ require("lazy").setup({
     { import = "plugins" },
   },
 })
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "#000000", ctermbg = "black" })

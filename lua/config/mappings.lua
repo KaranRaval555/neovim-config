@@ -3,8 +3,8 @@ local opts = { noremap = true, silent = true }
 
 map("i", "jk", "<ESC>")
 map("n", "<leader>o", ":update<CR> :source<CR>", { desc = "Save and source current file" })
-map("n", "<leader>w", ":update<CR> :write<CR>", { desc = "Save current file" })
-map("n", "<leader>x", ":quit<CR> :write<CR>", { desc = "Quit current file" })
+map("n", "<leader>w", "<cmd>update<CR>", { desc = "Save current file" })
+map("n", "<leader>x", "<cmd>wq<CR>", { desc = "Quit current file" })
 map("n", "<leader>yy", 'gg"+yG')
 map("n", "<leader>dd", 'gg"+dG')
 map("n", "<leader>vv", "ggVG")
@@ -36,20 +36,8 @@ map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
---
--- -- Tabs
--- map("n", "<Tab>", ":tabn<CR>", opts) -- open new tab
--- map("n", "<S-Tab>", ":tabp<CR>", opts) -- close current tab
--- map("n", "<leader>x", ":tabclose<CR>", opts) --  go to next tab
--- map("n", "<leader>b", ":tabnew<CR>", opts) --  go to previous tab
 
--- Toggle line wrapping
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
-
--- map('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
--- map('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
--- map('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
--- map('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
@@ -62,9 +50,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
 map("n", "<leader>st", function()
   vim.cmd.vnew()
   vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 7)
+  vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.3))
 end)
-
-vim.keymap.set("n", "<leader>to", ":TSCOpen<CR>")
-vim.keymap.set("n", "<leader>tc", ":TSCClose<CR>")

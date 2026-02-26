@@ -1,4 +1,5 @@
 local o = vim.o
+
 vim.g.have_nerd_font = true
 o.shiftwidth = 2
 o.background = "dark"
@@ -18,9 +19,6 @@ o.showcmd = false
 o.laststatus = 3
 o.autowrite = true
 o.autoread = true
-vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
-end)
 o.breakindent = true
 o.smartindent = true
 o.smarttab = true
@@ -33,7 +31,7 @@ o.incsearch = true
 o.termguicolors = true
 o.ignorecase = true
 o.smartcase = true
-o.signcolumn = "yes"
+o.signcolumn = "no"
 o.updatetime = 250
 o.timeoutlen = 300
 o.title = true
@@ -50,6 +48,12 @@ o.cursorlineopt = "both"
 o.scrolloff = 10
 o.confirm = true
 o.linebreak = true
+o.guicursor = "n-v-c-i:block"
+o.foldcolumn = "0"
+
+vim.schedule(function()
+  vim.o.clipboard = "unnamedplus"
+end)
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
