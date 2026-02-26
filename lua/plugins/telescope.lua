@@ -16,12 +16,6 @@ return {
   },
   config = function()
     require("telescope").setup({
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-      -- pickers = {}
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_ivy(),
@@ -35,6 +29,7 @@ return {
 
     local builtin = require("telescope.builtin")
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+    vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "[S]earch man pages" })
     vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
@@ -53,12 +48,5 @@ return {
         previewer = false,
       }))
     end, { desc = "[/] Fuzzily search in current buffer" })
-
-    vim.keymap.set("n", "<leader>s/", function()
-      builtin.live_grep({
-        grep_open_files = true,
-        prompt_title = "Live Grep in Open Files",
-      })
-    end, { desc = "[S]earch [/] in Open Files" })
   end,
 }
