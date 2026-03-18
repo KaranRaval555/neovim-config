@@ -10,10 +10,10 @@ return {
         },
       },
     },
-    { "mason-org/mason.nvim", opts = {} },
+    { "mason-org/mason.nvim", opts = {}, cmd = { "Mason", "MasonInstall", "MasonUpdate" } },
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    { "j-hui/fidget.nvim", opts = {} },
+    { "j-hui/fidget.nvim", event = "LspAttach", opts = {} },
   },
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -118,7 +118,8 @@ return {
 
     local servers = {
       gopls = {},
-
+      clojure_lsp = {},
+      rust_analyzer = {},
       ts_ls = {
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
         on_attach = function(client)
@@ -137,6 +138,11 @@ return {
               callSnippet = "Replace",
             },
           },
+        },
+      },
+      tinymist = {
+        settings = {
+          formatterMode = "typstyle",
         },
       },
     }

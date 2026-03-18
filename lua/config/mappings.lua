@@ -50,5 +50,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 map("n", "<leader>st", function()
   vim.cmd.vnew()
   vim.cmd.term()
-  vim.api.nvim_win_set_width(0, math.floor(vim.o.columns * 0.3))
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 7)
 end)

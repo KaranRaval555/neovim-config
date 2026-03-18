@@ -1,6 +1,92 @@
 return {
   "nvim-telescope/telescope.nvim",
-  event = "VimEnter",
+
+  cmd = "Telescope",
+
+  keys = {
+    {
+      "<leader>fh",
+      function()
+        require("telescope.builtin").help_tags()
+      end,
+      desc = "[S]earch [H]elp",
+    },
+    {
+      "<leader>fm",
+      function()
+        require("telescope.builtin").man_pages()
+      end,
+      desc = "[S]earch man pages",
+    },
+    {
+      "<leader>fk",
+      function()
+        require("telescope.builtin").keymaps()
+      end,
+      desc = "[S]earch [K]eymaps",
+    },
+    {
+      "<leader>ff",
+      function()
+        require("telescope.builtin").find_files()
+      end,
+      desc = "[S]earch [F]iles",
+    },
+    {
+      "<leader>fs",
+      function()
+        require("telescope.builtin").builtin()
+      end,
+      desc = "[S]earch [S]elect Telescope",
+    },
+    {
+      "<leader>fw",
+      function()
+        require("telescope.builtin").grep_string()
+      end,
+      desc = "[S]earch current [W]ord",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "[S]earch by [G]rep",
+    },
+    {
+      "<leader>fd",
+      function()
+        require("telescope.builtin").diagnostics()
+      end,
+      desc = "[S]earch [D]iagnostics",
+    },
+    {
+      "<leader>f.",
+      function()
+        require("telescope.builtin").oldfiles()
+      end,
+      desc = "Recent Files",
+    },
+    {
+      "<leader><leader>",
+      function()
+        require("telescope.builtin").buffers()
+      end,
+      desc = "Buffers",
+    },
+
+    {
+      "<leader>/",
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_ivy({
+          winblend = 10,
+          previewer = false,
+        }))
+      end,
+      desc = "Fuzzy search current buffer",
+    },
+  },
+
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
@@ -10,10 +96,10 @@ return {
         return vim.fn.executable("make") == 1
       end,
     },
-    { "nvim-telescope/telescope-ui-select.nvim" },
-
+    "nvim-telescope/telescope-ui-select.nvim",
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
   },
+
   config = function()
     require("telescope").setup({
       extensions = {
@@ -26,27 +112,5 @@ return {
 
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
-
-    local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-    vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "[S]earch man pages" })
-    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[S]earch [F]iles" })
-    vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-    vim.keymap.set("n", "<leader>qs", "<cmd>Trouble<cr>", {
-      desc = "Trouble",
-    })
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-    vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-
-    vim.keymap.set("n", "<leader>/", function()
-      builtin.current_buffer_fuzzy_find(require("telescope.themes").get_ivy({
-        winblend = 10,
-        previewer = false,
-      }))
-    end, { desc = "[/] Fuzzily search in current buffer" })
   end,
 }

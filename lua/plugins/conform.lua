@@ -28,11 +28,13 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       javascript = { "prettier", stop_after_first = true },
+      rust = { "rustfmt", lsp_format = "fallback" },
       typescript = { "prettier", stop_after_first = true },
       c = { "clang-format", "prettier" },
       css = { "prettier" },
       html = { "prettier" },
       python = { "isort", "black" },
+      clojure = { "clj-condo", "clojure-lsp" },
     },
   },
 }
