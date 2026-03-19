@@ -9,10 +9,9 @@ map("n", "<leader>yy", 'gg"+yG')
 map("n", "<leader>dd", 'gg"+dG')
 map("n", "<leader>vv", "ggVG")
 map("n", "<leader>rr", 'ggVG"+p')
-map("n", "<M-j>", "<cmd>cnext<CR>")
-map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
+map("n", "<M-j>", "<cmd>cnext<CR>")
 map("n", "<M-k>", "<cmd>cprev<CR>")
 map("n", "ss", ":split<Return>")
 map("n", "sv", ":vsplit<Return>")
@@ -24,7 +23,6 @@ map("n", "<C-x>", function()
   vim.cmd("!chmod +x %")
 end, { desc = "Make current file executable" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show diagnostics in floating window" })
 map("n", "<Down>", ":resize -2<CR>", opts)
@@ -36,6 +34,23 @@ map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+map("n", "<leader>qq", function()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      vim.cmd("cclose")
+      return
+    end
+  end
+  vim.cmd("copen")
+end)
+
+map("n", "<leader>qd", function()
+  vim.diagnostic.setqflist({
+    open = true,
+    severity = nil, -- include all (errors, warnings, hints)
+  })
+end)
 
 map("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
 
